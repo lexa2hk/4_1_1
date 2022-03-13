@@ -23,7 +23,7 @@ void cl_application::bild_tree_objects()
 }
 int cl_application::exec_app()
 {
-    cout << root->children[1]->get_name(); //обраща
-    root->children[1]->print_tree();
+    cout << root->children[1]->get_name(); //обращаемся к главному объекту
+    root->children[1]->print_tree(); //выводим дерево рекурсивно
     return 0;
 }

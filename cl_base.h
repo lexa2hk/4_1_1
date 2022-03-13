@@ -17,7 +17,6 @@ class cl_base
     cl_base* parent;
     int index = 0;
 public:
-    int iterator;
     static cl_base* root;
     vector <cl_base*> children;
     cl_base();

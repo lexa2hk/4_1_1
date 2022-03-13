@@ -3,7 +3,7 @@
 cl_base* cl_base::root = new cl_base();
 cl_base::cl_base()
 {
-    parent = nullptr;
+    this -> parent = nullptr;
 }
 cl_base::cl_base(string object_name, cl_base* parent)
 {
@@ -16,9 +16,9 @@ cl_base::cl_base(string object_name, cl_base* parent)
     else
     {
         this->parent = parent; //иначе заполняем поле родителя
-        parent->children.push_back(this); //добавляем в список детей родителя
+        parent->children.push_back(this); //добавляем в список детей объекта-родителя
     }
-    children.push_back(this); //добвляем в свой список детей
+    children.push_back(this); //добвляем в свой список детей как головной объект
     index = (this->parent)->children.size() - 1; //индекс ребенка в дереве
 }
 void cl_base::set_name(string name)
@@ -29,21 +29,19 @@ void cl_base::set_parent(cl_base* parent) //установление родит�
 {
     this->parent = parent;
 }
-///
 cl_base* cl_base::get_parent() //вернуть родительский класс
 {
     return parent;
 }
-///
 string cl_base::get_name() //вернуть имя класса
 {
     return object_name;
 }
-cl_base* cl_base::get_object_by_name(string name)
+cl_base* cl_base::get_object_by_name(string name) //получение объекта по имении в дереве иерархии
 {
     cl_base* val = nullptr;
     bool chek = false;
-    for (size_t i = 0; i < children.size(); i++)
+    for (size_t i = 0; i < children.size(); i++) //поиск в векторе прямых наследников
     {
         val = children[i];
 
@@ -53,7 +51,7 @@ cl_base* cl_base::get_object_by_name(string name)
             return children[i];
         }
     }
-    for (size_t i = 1; i <children.size(); i++)
+    for (size_t i = 1; i <children.size(); i++) //поиск рекурсивно в наследниках наследников
     {
         val = (children[i]->get_object_by_name(name));
         if ((children[i]->get_object_by_name(name))->get_name() ==
