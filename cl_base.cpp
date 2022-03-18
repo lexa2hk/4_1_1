@@ -39,28 +39,7 @@ string cl_base::get_name() //вернуть имя класса
 }
 cl_base* cl_base::get_object_by_name(string name) //получение объекта по имении в дереве иерархии
 {
-    cl_base* val = nullptr;
-    bool chek = false;
-    for (size_t i = 0; i < children.size(); i++) //поиск в векторе прямых наследников
-    {
-        val = children[i];
 
-        if (children[i]->get_name() == name)
-        {
-            chek = true;
-            return children[i];
-        }
-    }
-    for (size_t i = 1; i <children.size(); i++) //поиск рекурсивно в наследниках наследников
-    {
-        val = (children[i]->get_object_by_name(name));
-        if ((children[i]->get_object_by_name(name))->get_name() ==
-            name)
-        {
-            return (children[i]->get_object_by_name(name));
-        }
-    }
-    return val;
 }
 void cl_base::print_tree()
 {
