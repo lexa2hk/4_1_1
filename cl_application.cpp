@@ -1,15 +1,17 @@
 #include "cl_application.h"
-cl_application::cl_application(cl_base* parent = nullptr)
+#include "child.h"
+cl_application::cl_application(child* parent = nullptr)
 {
-    cl_base::root->set_parent(parent); //инициализация головного объекта
-    cl_base::root->set_name("root");
-    cl_base::root->children.push_back(root);
+    cl_base* parent1 = parent;
+    child::root->set_parent(parent1); //инициализация головного объекта
+    child::root->set_name("root");
+    child::root->children.push_back(root);
 }
 void cl_application::bild_tree_objects()
 {
     string name1, name2;
     cin >> name1;
-    cl_base* child = new cl_base(name1, nullptr); //создание головного объекта
+    child* child1 = new child(name1, nullptr); //создание головного объекта
     while (true)
     {
         cin >> name1 >> name2; //ввод наследуемого класса и наследующего
@@ -17,8 +19,8 @@ void cl_application::bild_tree_objects()
         {
             return;
         }
-        cl_base* child2 = new cl_base(name2, root->get_object_by_name(name1)); //создание дочернего класса
-        child = child2;
+        child* child2 = new child(name2, root->get_object_by_name(name1)); //создание дочернего класса
+        child1 = child2;
     }
 }
 int cl_application::exec_app()

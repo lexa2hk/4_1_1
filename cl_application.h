@@ -6,12 +6,13 @@
 #define INC_4_1_1_CL_APPLICATION_H
 
 #include "cl_base.h"
+#include "child.h"
 #include <string>
 using namespace std;
 class cl_application : public cl_base
 {
 public:
-    cl_application(cl_base* parent);
+    cl_application(child* parent);
     void bild_tree_objects();
     int exec_app();
 };
