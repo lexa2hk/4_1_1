@@ -20,7 +20,6 @@ void cl_application::bild_tree_objects()
             return;
         }
         child* child2 = new child(name2, root->get_object_by_name(name1)); //создание дочернего класса
-        child1 = child2;
     }
 }
 int cl_application::exec_app()
